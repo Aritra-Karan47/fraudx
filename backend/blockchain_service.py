@@ -18,7 +18,9 @@ def get_wallet_transactions(address):
         "address": address,
         "startblock": 0,
         "endblock": 99999999,
-        "sort": "asc",
+        "sort": "desc",
+        "offset": 200,
+        "page": 1,
         "apikey": ETH_API_KEY
     }
 
