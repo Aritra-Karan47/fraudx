@@ -5,3 +5,5 @@ numpy
 requests
 joblib
 lightgbm
+scikit-learn
+python-dotenv

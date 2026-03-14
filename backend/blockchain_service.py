@@ -1,13 +1,18 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-ETH_API_KEY = "7GJ6UKXZX45AQ79H8XMA9F2U8EU2G2ICG9"
+load_dotenv()
+
+ETH_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 
 
 def get_wallet_transactions(address):
 
-    url = f"https://api.etherscan.io/api"
+    url = "https://api.etherscan.io/v2/api"
 
     params = {
+        "chainid": 1,                 # ⭐ REQUIRED for V2
         "module": "account",
         "action": "txlist",
         "address": address,
@@ -20,6 +25,8 @@ def get_wallet_transactions(address):
     response = requests.get(url, params=params)
 
     data = response.json()
+
+    print("ETHERSCAN RESPONSE:", data)
 
     if data["status"] != "1":
         return []
